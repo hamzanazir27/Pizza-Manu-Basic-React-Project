@@ -54,6 +54,7 @@ function App() {
     <div className="container">
       <Header />
       <Manu />
+      <Footer />
     </div>
   );
 }
@@ -110,7 +111,31 @@ function Pizza({pizaObject})
   </li>
  );
 }
+ function Footer()
+ { const hours =new Date().getHours();
+  const open=12
+  const close=22
+     let isOpen= hours<close && hours>open? true :false; 
+    isOpen=true
+  return(
+<footer className="footer">
+  
+ {isOpen ? <Oder open={open} close={close}/>: <p>sorry Our store are closed oder </p>
+  }
+</footer>)
 
+ }
+
+function Oder({open,close})
+{
+ 
+  return(
+    <div className="order">
+     <p>We're open from {open}:00 to {close}:00. Come visit us or order online.</p> 
+     <button className="btn">Oder</button>
+     </div>
+  );
+}
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
