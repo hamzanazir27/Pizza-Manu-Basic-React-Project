@@ -67,14 +67,49 @@ function Header() {
 }
 function Manu()
 {
+  const numpiza=pizzaData.length;
+
    return(
    <div className="menu">
     <h2>Our menu</h2>
+  {numpiza >0 ?
+      <>
     <p>Authentic Italian cuisine. 6 creative dishes to choose from. All from our stone oven, all organic, all delicious.
     </p>
+    <ul className="pizzas">
+    {pizzaData.map(pizza=> 
+ <Pizza pizaObject={pizza} key={pizza.name}/>
+
+  )}
+
+    </ul>
+    
+    
+    </>
+    
+    :
+    <p>we are working on manu please comeback</p>
+}
    </div>);
 }
 
+function Pizza({pizaObject})
+{
+ return(
+  <li className={`pizza ${pizaObject.soldOut ? "sold-out" : ""} `}>
+   <img src={pizaObject.photoName}  alt={pizaObject.name}/>
+   <div>
+    <h3>{pizaObject.name}</h3>
+    <p>
+      {pizaObject.ingredients}
+    </p>
+    <span>{pizaObject.price}</span>
+   </div>
+
+   
+  </li>
+ );
+}
 
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
